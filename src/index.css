@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-wellness-primary: #f0f7ff;
+  --color-wellness-pink: #ffe4e1;
+  --color-wellness-mint: #e6fffa;
+  --color-wellness-lavender: #f5f3ff;
+  --color-wellness-dark: #2d3436;
+  --color-wellness-gray: #636e72;
+
+  --font-outfit: "Outfit", sans-serif;
+
+  --radius-3xl: 30px;
+  --radius-4xl: 40px;
+
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+  --shadow-premium: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes mesh-pulse {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+
+@layer base {
+  body {
+    @apply font-outfit bg-wellness-primary text-wellness-dark antialiased;
+  }
+}
+
+@layer components {
+  .btn-premium {
+    @apply px-10 py-4 bg-[#ff8da1] text-white rounded-full transition-all duration-300 hover:bg-[#ff7a91] hover:-translate-y-1 shadow-soft hover:shadow-lg active:scale-95 border-none;
+  }
+
+  .sidebar {
+    @apply w-64 border-r border-gray-100 p-6 flex flex-col gap-2;
+  }
+
+  .sidebar-item {
+    @apply flex items-center gap-3 px-4 py-3 rounded-2xl text-wellness-gray transition-all cursor-pointer hover:bg-gray-50;
+  }
+
+  .sidebar-item.active {
+    @apply bg-purple-50 text-black shadow-sm;
+  }
+
+  .dashboard-main {
+    @apply p-10 bg-wellness-primary;
+  }
+
+  .topbar {
+    @apply flex justify-between items-center mb-10;
+  }
+
+  .search-bar {
+    @apply flex items-center gap-3 bg-white px-5 py-3 rounded-2xl shadow-sm border border-black/5 w-96;
+  }
+
+  .search-bar input {
+    @apply bg-transparent outline-none text-sm w-full;
+  }
+
+  .stat-card {
+    @apply bg-white p-6 rounded-[2rem] shadow-soft border border-black/5;
+  }
+
+  .card {
+    @apply bg-white rounded-[2.5rem] shadow-soft border border-black/5;
+  }
+
+  .badge {
+    @apply px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider;
+  }
+
+  .badge-success {
+    @apply bg-green-50 text-green-600;
+  }
+
+  .ai-hint {
+    @apply bg-gradient-to-br from-wellness-pink/30 to-wellness-lavender/30 p-8 rounded-[2.5rem] border border-white;
+  }
+
+  .video-thumb {
+    @apply aspect-video rounded-2xl overflow-hidden relative shadow-sm;
+  }
+
+  /* Glassmorphism utility */
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-white/30 shadow-soft;
+  }
+
+  .mesh-gradient {
+    background: linear-gradient(-45deg, #f0f7ff, #e0f2fe, #f0f9ff, #e0f2fe);
+    background-size: 400% 400%;
+    animation: mesh-pulse 15s ease infinite;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 15px rgba(230, 255, 250, 0.8);
+  }
+
+  .premium-card-hover {
+    @apply transition-all duration-500 hover:shadow-premium hover:-translate-y-2;
+  }
+
+  /* Custom Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gray-200 rounded-full hover:bg-gray-300 transition-colors;
+  }
+}
